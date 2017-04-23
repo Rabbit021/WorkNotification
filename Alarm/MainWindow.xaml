@@ -11,20 +11,20 @@
         <control:ListViewItemStyleSelector x:Key="ListViewItemStyleSelector" />
         <DataTemplate x:Key="EditAndDel">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{DynamicResource OrangeButtonStyle}" Content="编辑"/>
-                <Button Style="{DynamicResource OrangeButtonStyle}" Margin="5,0,0,0" Content="删除"/>
+                <Button x:Name="BtnEdit" Style="{DynamicResource OrangeButtonStyle}" Content="编辑" Click="BtnEdit_Click"/>
+                <Button x:Name="BtnDel" Style="{DynamicResource OrangeButtonStyle}" Margin="5,0,0,0" Content="删除" Click="BtnDel_Click"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFCCE8CF">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="Header" Background="{DynamicResource HeaderBgBrush}">
+        <Grid x:Name="Header">
             <TextBlock x:Name="tbHeader" TextWrapping="Wrap" Text="河北广播电视台播控中心" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource HeaderTextBlockStyle}"/>
         </Grid>
-        <Grid x:Name="Content" Grid.Row="1" Margin="10,20">
+        <Grid x:Name="Content" Grid.Row="1" Margin="5,0,5,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -33,25 +33,25 @@
                 <Button x:Name="BtnAdd" Content="添加" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Style="{DynamicResource OrangeButtonStyle}"></Button>
             </StackPanel>
             <ListView x:Name="listView" Grid.Row="1" BorderBrush="{DynamicResource LineBrush}" SelectionMode="Single"
-                         ItemContainerStyleSelector="{DynamicResource ListViewItemStyleSelector}" Margin="0,10,0,0" >
+                         ItemContainerStyleSelector="{DynamicResource ListViewItemStyleSelector}" Margin="0,10,0,0" BorderThickness="1" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="200" >
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding date}">
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock Text="日期" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding time}">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="时间" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
                             </StackPanel>
                         </GridViewColumn>
-                        <GridViewColumn Width="200">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="时间" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
-                            </StackPanel>
-                        </GridViewColumn>
-                        <GridViewColumn Width="200">
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding title}">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="标题" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
                             </StackPanel>
                         </GridViewColumn>
-                        <GridViewColumn Width="200">
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding content}">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="内容" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
                             </StackPanel>

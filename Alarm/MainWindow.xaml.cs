@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Alarm.Models;
+using Alarm.CommonLib;
+using System.Linq;
 
 namespace Alarm
 {
@@ -24,15 +26,50 @@ namespace Alarm
         {
             InitializeComponent();
             this.BtnAdd.Click += BtnAdd_Click;
+            this.Loaded += MainWindow_Loaded;
+
+            Refresh();
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var val = new TaskModel()
+            var task = new TaskModel()
             {
                 id = Guid.NewGuid().ToString(),
+                date = DateTime.Now.ToShortDateString()
             };
-            TaskContext.Instance.Add(val);
+            Db.Instance.repository.Insert<TaskModel>(task);
+
+            Refresh();
+
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO Edit
+            Refresh();
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (sender as FrameworkElement).DataContext as TaskModel;
+            if (task == null)
+                return;
+            Db.Instance.repository.Delete<TaskModel>(task.id);
+            this.Refresh();
+        }
+
+        public void Refresh()
+        {
+            var tasks = Db.Instance.repository.Query<TaskModel>().ToList();
+            this.listView.ItemsSource = tasks;
+
+            // TODO Refresh Task 
+
         }
     }
 }

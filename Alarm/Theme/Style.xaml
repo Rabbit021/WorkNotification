@@ -231,9 +231,9 @@
         <Setter Property="Foreground" Value="{DynamicResource NormalFontBrush}"/>
     </Style>
     <Style  x:Key="ListHeaderStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalFontBrush}"/>
-        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontWeight" Value="Normal"/>
     </Style>
     <Style x:Key="DirectionsLightFontBrush" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="16"/>
