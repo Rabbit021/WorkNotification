@@ -1,0 +1,69 @@
+﻿<Window x:Class="Alarm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alarm"
+        xmlns:control="clr-namespace:ShowAlarm.Control"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1080">
+    <Window.Resources>
+        <control:ListViewItemStyleSelector x:Key="ListViewItemStyleSelector" />
+        <DataTemplate x:Key="EditAndDel">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{DynamicResource OrangeButtonStyle}" Content="编辑"/>
+                <Button Style="{DynamicResource OrangeButtonStyle}" Margin="5,0,0,0" Content="删除"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="Header" Background="{DynamicResource HeaderBgBrush}">
+            <TextBlock x:Name="tbHeader" TextWrapping="Wrap" Text="河北广播电视台播控中心" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource HeaderTextBlockStyle}"/>
+        </Grid>
+        <Grid x:Name="Content" Grid.Row="1" Margin="10,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top">
+                <Button x:Name="BtnAdd" Content="添加" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Style="{DynamicResource OrangeButtonStyle}"></Button>
+            </StackPanel>
+            <ListView x:Name="listView" Grid.Row="1" BorderBrush="{DynamicResource LineBrush}" SelectionMode="Single"
+                         ItemContainerStyleSelector="{DynamicResource ListViewItemStyleSelector}" Margin="0,10,0,0" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="时间" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="时间" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="标题" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="内容" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" CellTemplate="{DynamicResource EditAndDel}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="操作" d:LayoutOverrides="Width" Style="{DynamicResource ListHeaderStyle}"/>
+                            </StackPanel>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
