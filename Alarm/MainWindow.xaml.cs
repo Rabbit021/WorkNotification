@@ -41,7 +41,6 @@ namespace Alarm
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
             var task = new TaskModel()
             {
                 id = Guid.NewGuid().ToString(),
@@ -54,13 +53,17 @@ namespace Alarm
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            // TODO Edit
+            var task = (sender as FrameworkElement)?.DataContext as TaskModel;
+            if (task == null)
+                return;
+            task.date = DateTime.Now.AddDays(1).ToShortDateString();
+            Db.Instance.repository.Update<TaskModel>(task);
             Refresh();
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            var task = (sender as FrameworkElement).DataContext as TaskModel;
+            var task = (sender as FrameworkElement)?.DataContext as TaskModel;
             if (task == null)
                 return;
             Db.Instance.repository.Delete<TaskModel>(task.id);
@@ -71,7 +74,7 @@ namespace Alarm
         {
             var tasks = Db.Instance.repository.Query<TaskModel>().ToList();
             this.listView.ItemsSource = tasks;
-            // TODO Refresh Task 
+
             ScheduledManager.Instance.Refresh(tasks);
         }
     }
