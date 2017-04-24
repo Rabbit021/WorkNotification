@@ -10,6 +10,7 @@ namespace Alarm.Models
     {
         [BsonId]
         public string id { get; set; }
+
         public string state { get; set; }
         public string title { get; set; }
         public string content { get; set; }
@@ -20,5 +21,6 @@ namespace Alarm.Models
         public string audio { get; set; }
         public string volume { get; set; }
         public string fontsize { get; set; }
+        public string expression { get; set; }
     }
 }

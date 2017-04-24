@@ -13,7 +13,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Alarm.Models;
 using Alarm.CommonLib;
-using System.Linq;
 
 namespace Alarm
 {
@@ -27,8 +26,13 @@ namespace Alarm
             InitializeComponent();
             this.BtnAdd.Click += BtnAdd_Click;
             this.Loaded += MainWindow_Loaded;
-
+            this.Closing += MainWindow_Closing;
             Refresh();
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ScheduledManager.Instance.Close();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -37,15 +41,15 @@ namespace Alarm
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+
             var task = new TaskModel()
             {
                 id = Guid.NewGuid().ToString(),
-                date = DateTime.Now.ToShortDateString()
+                date = DateTime.Now.ToShortDateString(),
+                time = DateTime.Now.AddSeconds(10).ToShortTimeString(),
             };
             Db.Instance.repository.Insert<TaskModel>(task);
-
             Refresh();
-
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
@@ -67,9 +71,8 @@ namespace Alarm
         {
             var tasks = Db.Instance.repository.Query<TaskModel>().ToList();
             this.listView.ItemsSource = tasks;
-
             // TODO Refresh Task 
-
+            ScheduledManager.Instance.Refresh(tasks);
         }
     }
 }
