@@ -5,7 +5,6 @@
     <Color x:Key="BgColor">#FFEEEEEE</Color>
     <Color x:Key="	 borderColor">#FFEEEEEE</Color>
     <Color x:Key="BtnColor">#FFB4B3B3</Color>
-    
     <SolidColorBrush x:Key="HeaderBgBrush" Color="#FF88B4F1"/>
     <SolidColorBrush x:Key="TextBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="LineBrush">#cacaca</SolidColorBrush>
