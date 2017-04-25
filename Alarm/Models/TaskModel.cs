@@ -10,18 +10,30 @@ namespace Alarm.Models
 {
     public class TaskModel : INotifyPropertyChanged
     {
-        [BsonIgnore] private string _id;
-        [BsonIgnore] private string _state;
-        [BsonIgnore] private string _title;
-        [BsonIgnore] private string _content;
-        [BsonIgnore] private string _type;
-        [BsonIgnore] private string _time;
-        [BsonIgnore] private string _date;
-        [BsonIgnore] private string _weekdays;
-        [BsonIgnore] private string _audio;
-        [BsonIgnore] private string _volume;
-        [BsonIgnore] private string _fontsize;
-        [BsonIgnore] private string _expression;
+        [BsonIgnore]
+        private string _id;
+        [BsonIgnore]
+        private string _state;
+        [BsonIgnore]
+        private string _title;
+        [BsonIgnore]
+        private string _content;
+        [BsonIgnore]
+        private string _type;
+        [BsonIgnore]
+        private string _time;
+        [BsonIgnore]
+        private string _date;
+        [BsonIgnore]
+        private string _weekdays;
+        [BsonIgnore]
+        private string _audio;
+        [BsonIgnore]
+        private string _volume;
+        [BsonIgnore]
+        private string _fontsize;
+        [BsonIgnore]
+        private string _expression;
 
         public TaskModel()
         {

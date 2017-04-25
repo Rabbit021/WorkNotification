@@ -20,9 +20,21 @@
     <SolidColorBrush x:Key="ButtonNormalForeBrush" Color="#637e99" />
     <SolidColorBrush x:Key="ButtonNormalBrush">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonBorderBrush">#cacaca</SolidColorBrush>
+    <SolidColorBrush x:Key="BlueFontColor">#637e99</SolidColorBrush>
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="BorderBrush" Color="#FF5F6164"></SolidColorBrush>
+    
+    <SolidColorBrush x:Key="LightBrush" Color="#FF333333" />
+    
+    
     <Style x:Key="LabelItemsNormalStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalFontBrush}"/>
+    </Style>
+    <Style x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
+        <Setter Property="MinWidth" Value="700"/>
+        <Setter Property="Margin" Value="0,10" />
     </Style>
     <Style x:Key="NormalButtonStyle"  TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="{DynamicResource ButtonNormalForeBrush}"/>

@@ -4,25 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Alarm"
-             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Alarm.EditTaskControl"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Control="clr-namespace:Alarm.Control" x:Class="Alarm.EditTaskControl"
              mc:Ignorable="d" >
-    <UserControl.Resources></UserControl.Resources>
     <StackPanel x:Name="Edit" >
-        <StackPanel Orientation="Horizontal" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,10">
-            <TextBlock HorizontalAlignment="Left" Text="标题：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}"/>
-            <TextBox x:Name="title" HorizontalAlignment="Left" Text="{Binding title,Mode=TwoWay}" Padding="4" Height="32" VerticalAlignment="Center" Margin="5,0" Width="280" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10" d:LayoutOverrides="LeftPosition, RightPosition">
-            <TextBlock HorizontalAlignment="Left" Text="内容：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}"/>
-            <TextBox x:Name="content" HorizontalAlignment="Left" Text="{Binding content,Mode=TwoWay}" Padding="4" Height="32" Width="280" VerticalAlignment="Center" Margin="5,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10" d:LayoutOverrides="LeftPosition, RightPosition">
-            <TextBlock HorizontalAlignment="Left" Text="时间：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}"/>
-            <TextBox HorizontalAlignment="Left" Text="" Padding="4" Height="32" Width="280" VerticalAlignment="Center" Margin="5,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="210" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Margin="0,10">
-            <Button x:Name="BtnSave" VerticalAlignment="Top" HorizontalAlignment="Left" Content="保存"  Style="{DynamicResource BlueButtonStyle}" Width="90" Height="32"/>
-            <Button x:Name="BtnCancle" VerticalAlignment="Top" HorizontalAlignment="Left" Content="取消"  Style="{DynamicResource NormalButtonStyle}" Margin="30,0,0,0" Width="90" Height="32"/>
-        </StackPanel>
+        <Grid Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Text="标题：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}" Margin="0,5.84" d:LayoutOverrides="HorizontalAlignment"/>
+            <TextBox x:Name="title"  Text="{Binding title, Mode=TwoWay}" Padding="4" VerticalContentAlignment="Center" Margin="0" Grid.Column="1" />
+        </Grid>
+        <Grid Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Text="内容：" FontSize="16" VerticalAlignment="Top" Style="{DynamicResource LabelItemsNormalStyle}" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+            <TextBox x:Name="content" TextWrapping="Wrap" AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" Text="{Binding content, Mode=TwoWay}"  Padding="4" MinHeight="300" Grid.Column="1" />
+        </Grid>
+        <Grid Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Text="时间：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}" Margin="0,5.84" d:LayoutOverrides="HorizontalAlignment"/>
+            <Control:DropDatePicker d:LayoutOverrides="Width, Height" Grid.Column="1"/>
+        </Grid>
+        <Grid Margin="0,10" HorizontalAlignment="Center">
+            <Button x:Name="BtnSave" Content="保存"  Style="{DynamicResource BlueButtonStyle}" Width="90" Margin="50,0,0,0" HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin"/>
+            <Button x:Name="BtnCancle" Content="取消"  Style="{DynamicResource NormalButtonStyle}" Width="90" Margin="170,0,0,0" HorizontalAlignment="Left"/>
+        </Grid>
     </StackPanel>
 </UserControl>
