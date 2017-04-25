@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Alarm.Models;
 
 namespace Alarm
 {
@@ -23,5 +24,24 @@ namespace Alarm
         {
             InitializeComponent();
         }
+
+        #region Current
+        public TaskModel Current
+        {
+            get { return (TaskModel)GetValue(CurrentProperty); }
+            set { SetValue(CurrentProperty, value); }
+        }
+
+        public static readonly DependencyProperty CurrentProperty =
+            DependencyProperty.Register("Current", typeof(TaskModel), typeof(EditTaskControl), new PropertyMetadata((sender, e) =>
+            {
+                var vm = sender as EditTaskControl;
+                if (vm == null) return;
+
+                var val = e.NewValue as TaskModel;
+                if (val == null) return;
+                vm.Edit.DataContext = val;
+            }));
+        #endregion
     }
 }

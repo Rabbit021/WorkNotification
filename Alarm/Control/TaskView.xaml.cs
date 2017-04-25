@@ -21,8 +21,6 @@ namespace Alarm.Control
     [TemplateVisualState(Name = "EditTask", GroupName = "VisualStateGroup")]
     public partial class TaskView : UserControl
     {
-        public TaskModel Current { get; set; }
-
         public TaskView()
         {
             InitializeComponent();
@@ -39,7 +37,8 @@ namespace Alarm.Control
 
         private void List_AddEvent(object sender, RoutedEventArgs e)
         {
-            Current = new TaskModel();
+            var task = new TaskModel();
+            this.Edit.Current = task;
             VisualStateManager.GoToState(this, "EditTask", false);
         }
 
@@ -57,13 +56,14 @@ namespace Alarm.Control
             var task = (sender as FrameworkElement)?.DataContext as TaskModel;
             if (task == null)
                 return;
-            Current = task;
+            this.Edit.Current = task;
             VisualStateManager.GoToState(this, "EditTask", false);
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            AddOrUpdate(Current);
+            var task = this.Edit.Current;
+            AddOrUpdate(task);
             VisualStateManager.GoToState(this, "ListTask", false);
         }
 
@@ -82,7 +82,7 @@ namespace Alarm.Control
         public void AddOrUpdate(TaskModel task)
         {
             if (task == null) return;
-            Db.repository?.Upsert<TaskModel>(AddOrUpdateWin.Current.CurrentTask);
+            Db.repository?.Upsert<TaskModel>(task);
             Refresh();
         }
     }

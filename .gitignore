@@ -3,3 +3,4 @@ obj
 bin
 /.nuget/
 /packages/
+*.sln.DotSettings
