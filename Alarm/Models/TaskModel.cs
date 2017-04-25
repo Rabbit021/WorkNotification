@@ -8,6 +8,11 @@ namespace Alarm.Models
 {
     public class TaskModel
     {
+        public TaskModel()
+        {
+            id = Guid.NewGuid().ToString();
+        }
+
         [BsonId]
         public string id { get; set; }
 

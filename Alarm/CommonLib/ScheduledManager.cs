@@ -61,13 +61,16 @@ namespace Alarm.CommonLib
 
         public void Close()
         {
-            Clear();
+            scheduler.Shutdown();
         }
 
         public void Clear()
         {
-            scheduler.PauseAll();
-            scheduler.Clear();
+            if (!scheduler.IsShutdown)
+            {
+                scheduler.PauseAll();
+                scheduler.Clear();
+            }
         }
     }
 }

@@ -9,15 +9,19 @@ namespace Alarm.CommonLib
 {
     public class Db
     {
-        public static Db Instance = new Db();
-        public LiteRepository repository { get; set; }
-        public LiteDatabase database { get; set; }
-
-        private Db()
+        private static LiteRepository _repository;
+        public static LiteRepository repository
         {
-            var str = ConfigurationManager.AppSettings["connection"].ToString();
-            repository = new LiteRepository(str);
-            database = new LiteDatabase(str);
+            get
+            {
+                if (_repository == null)
+                {
+                    var str = ConfigurationManager.AppSettings["connection"].ToString();
+                    _repository = new LiteRepository(str);
+                }
+                return _repository;
+            }
         }
     }
+
 }

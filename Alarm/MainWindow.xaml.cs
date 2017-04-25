@@ -13,69 +13,28 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Alarm.Models;
 using Alarm.CommonLib;
+using Alarm.Control;
 
 namespace Alarm
 {
-    /// <summary>
-    /// MainWindow.xaml 的交互逻辑
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            this.BtnAdd.Click += BtnAdd_Click;
-            this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
-            Refresh();
+
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ScheduledManager.Instance.Close();
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            var task = new TaskModel()
-            {
-                id = Guid.NewGuid().ToString(),
-                date = DateTime.Now.ToShortDateString(),
-                time = DateTime.Now.AddSeconds(10).ToShortTimeString(),
-            };
-            Db.Instance.repository.Insert<TaskModel>(task);
-            Refresh();
-        }
-
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            var task = (sender as FrameworkElement)?.DataContext as TaskModel;
-            if (task == null)
-                return;
-            task.date = DateTime.Now.AddDays(1).ToShortDateString();
-            Db.Instance.repository.Update<TaskModel>(task);
-            Refresh();
-        }
-
-        private void BtnDel_Click(object sender, RoutedEventArgs e)
-        {
-            var task = (sender as FrameworkElement)?.DataContext as TaskModel;
-            if (task == null)
-                return;
-            Db.Instance.repository.Delete<TaskModel>(task.id);
-            this.Refresh();
-        }
-
-        public void Refresh()
-        {
-            var tasks = Db.Instance.repository.Query<TaskModel>().ToList();
-            this.listView.ItemsSource = tasks;
-
-            ScheduledManager.Instance.Refresh(tasks);
         }
     }
 }

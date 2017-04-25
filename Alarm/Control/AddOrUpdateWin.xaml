@@ -1,0 +1,14 @@
+﻿<Window x:Class="Alarm.Control.AddOrUpdateWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alarm.Control"
+        mc:Ignorable="d" Title="编辑任务" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Width="1080" Height="600" >
+    <Grid>
+        <StackPanel Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button x:Name="BtnSave" Style="{DynamicResource BlueButtonStyle}" Content="保存" d:LayoutOverrides="LeftPosition, RightPosition"/>
+            <Button x:Name="BtnCancle" Style="{DynamicResource NormalButtonStyle}" Content="取消" d:LayoutOverrides="LeftPosition, RightPosition"/>
+        </StackPanel>
+    </Grid>
+</Window>
