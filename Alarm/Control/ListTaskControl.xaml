@@ -26,19 +26,14 @@
         <ListView x:Name="listView" SelectionMode="Single" Grid.Row="1" Margin="0,10,0,0" ItemContainerStyleSelector="{DynamicResource ListViewItemStyleSelector}" BorderThickness="1" BorderBrush="{DynamicResource LineBrush}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding date}" Width="200">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{DynamicResource ListHeaderStyle}" Text="日期" d:LayoutOverrides="Width"/>
-                        </StackPanel>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding time}" Width="200">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{DynamicResource ListHeaderStyle}" Text="时间" d:LayoutOverrides="Width"/>
-                        </StackPanel>
-                    </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding title}" Width="200">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Style="{DynamicResource ListHeaderStyle}" Text="标题" d:LayoutOverrides="Width"/>
+                        </StackPanel>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding expression}" Width="200">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{DynamicResource ListHeaderStyle}" Text="表达式" d:LayoutOverrides="Width"/>
                         </StackPanel>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding content}" Width="200">

@@ -96,6 +96,7 @@
     <Compile Include="Control\TaskView.xaml.cs">
       <DependentUpon>TaskView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validation\ExpressionValidation.cs" />
     <Page Include="Control\AddOrUpdateWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

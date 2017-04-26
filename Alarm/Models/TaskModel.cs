@@ -125,6 +125,7 @@ namespace Alarm.Models
             set
             {
                 _expression = value;
+
                 OnPropertyChanged(nameof(expression));
             }
         }

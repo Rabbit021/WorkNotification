@@ -16,7 +16,7 @@ namespace Alarm.CommonLib
 
         public override string ToString()
         {
-            return $"{Second} {Minutes} {Hours} {Days} {Months} {DaysOfWeek} {Years}";
+            return $"{Minutes} {Hours} {Days} {Months} {DaysOfWeek}";
         }
     }
 
