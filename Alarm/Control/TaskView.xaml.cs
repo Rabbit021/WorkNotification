@@ -39,6 +39,7 @@ namespace Alarm.Control
         private void List_AddEvent(object sender, RoutedEventArgs e)
         {
             var task = new TaskModel();
+            task.expression = CronBuilder.CreateHourlyTrigger(39).ToString();
             this.Edit.Current = task;
             VisualStateManager.GoToState(this, "EditTask", false);
         }

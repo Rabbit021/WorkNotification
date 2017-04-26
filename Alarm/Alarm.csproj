@@ -77,7 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommonLib\CronExpession.cs" />
+    <Compile Include="CommonLib\CronBuilder.cs" />
     <Compile Include="CommonLib\IJobEntity.cs" />
     <Compile Include="Control\AddOrUpdateWin.xaml.cs">
       <DependentUpon>AddOrUpdateWin.xaml</DependentUpon>
