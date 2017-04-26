@@ -25,7 +25,8 @@ namespace Alarm.Control
         {
             InitializeComponent();
 
-            this.List.EditEvent += List_EditEvent; ;
+            this.List.EditEvent += List_EditEvent;
+            ;
             this.List.DeleteEvent += List_DeleteEvent;
             this.List.AddEvent += List_AddEvent;
             this.Edit.BtnCancle.Click += BtnCancle_Click;
@@ -76,7 +77,7 @@ namespace Alarm.Control
         {
             var tasks = Db.repository?.Query<TaskModel>().ToList();
             this.List.listView.ItemsSource = tasks;
-            ScheduledManager.Instance.Refresh(tasks);
+            ScheduledManager.Instance.Refresh<ShowAlarmJob>(tasks);
         }
 
         public void AddOrUpdate(TaskModel task)

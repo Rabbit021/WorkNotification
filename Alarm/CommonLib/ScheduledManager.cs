@@ -12,8 +12,7 @@ namespace Alarm.CommonLib
     {
         public static ScheduledManager Instance = new ScheduledManager();
 
-        private IScheduler scheduler;
-        private string Group = "Defalut";
+        private readonly IScheduler scheduler;
 
         private ScheduledManager()
         {
@@ -21,42 +20,19 @@ namespace Alarm.CommonLib
             scheduler.Start();
         }
 
-        public void Refresh(IList<TaskModel> tasks)
+        public void Refresh<T>(IList<TaskModel> tasks) where T : IJob
         {
-            Clear();
-            foreach (var itr in tasks)
+            foreach (var task in tasks)
             {
-                CreateOrUpdate(itr);
+                Refresh<T>(task);
             }
         }
 
-        private void CreateOrUpdate(TaskModel task)
+        public void Refresh<T>(TaskModel task) where T : IJob
         {
-            var map = new JobDataMap();
-            map.Add("task", task);
-
-            var job = JobBuilder.Create<ShowAlarmJob>()
-                .WithIdentity(task.id, Group)
-                .UsingJobData(map)
-                .Build();
-
-            ITrigger trigger = null;
-            if (!string.IsNullOrEmpty(task.expression))
-            {
-                trigger = TriggerBuilder.Create()
-                    .WithIdentity(job.Key.Name, job.Key.Group)
-                    .WithCronSchedule(task.expression)
-                    .Build();
-            }
-            else
-            {
-                trigger = TriggerBuilder.Create()
-                 .WithIdentity(job.Key.Name, job.Key.Group)
-                 .Build();
-            }
-
-            if (trigger != null)
-                scheduler.ScheduleJob(job, trigger);
+            var job = CreateJob<T>(task);
+            var trigger = CreateTrigger(task);
+            AssociationJob(job, trigger);
         }
 
         public void Close()
@@ -71,6 +47,51 @@ namespace Alarm.CommonLib
                 scheduler.PauseAll();
                 scheduler.Clear();
             }
+        }
+
+        public void AssociationJob(IJobDetail job, ITrigger trigger)
+        {
+            if (job != null && trigger != null)
+            {
+                scheduler.DeleteJob(job.Key);
+                scheduler.ScheduleJob(job, trigger);
+            }
+        }
+
+        public IJobDetail CreateJob<T>(IJobEntity entity, JobDataMap map = null) where T : IJob
+        {
+            if (entity == null)
+                return null;
+            map = map ?? new JobDataMap();
+            var job = JobBuilder.Create<T>()
+                .WithIdentity(entity.id, entity.Group)
+                .UsingJobData(map)
+                .Build();
+            return job;
+        }
+
+        public ITrigger CreateTrigger(ITriggerEntity entity, JobDataMap map = null)
+        {
+            if (entity == null)
+                return null;
+            map = map ?? new JobDataMap();
+            ITrigger trigger = null;
+            if (!string.IsNullOrEmpty(entity.expression) && CronExpression.IsValidExpression(entity.expression))
+            {
+                trigger = TriggerBuilder.Create()
+                    .WithIdentity(entity.id, entity.Group)
+                    .UsingJobData(map)
+                    .WithCronSchedule(entity.expression)
+                    .Build();
+            }
+            else
+            {
+                trigger = TriggerBuilder.Create()
+                    .WithIdentity(entity.id, entity.Group)
+                    .Build();
+            }
+
+            return trigger;
         }
     }
 }

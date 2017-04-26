@@ -4,36 +4,24 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Alarm.Annotations;
+using Alarm.CommonLib;
 using LiteDB;
 
 namespace Alarm.Models
 {
-    public class TaskModel : INotifyPropertyChanged
+    public class TaskModel : INotifyPropertyChanged, IJobEntity, ITriggerEntity
     {
-        [BsonIgnore]
         private string _id;
-        [BsonIgnore]
         private string _state;
-        [BsonIgnore]
         private string _title;
-        [BsonIgnore]
         private string _content;
-        [BsonIgnore]
         private string _type;
-        [BsonIgnore]
         private string _time;
-        [BsonIgnore]
         private string _date;
-        [BsonIgnore]
         private string _weekdays;
-        [BsonIgnore]
         private string _audio;
-        [BsonIgnore]
-        private string _volume;
-        [BsonIgnore]
-        private string _fontsize;
-        [BsonIgnore]
         private string _expression;
+        private string _display;
 
         public TaskModel()
         {
@@ -131,26 +119,6 @@ namespace Alarm.Models
             }
         }
 
-        public string volume
-        {
-            get { return _volume; }
-            set
-            {
-                _volume = value;
-                OnPropertyChanged(nameof(volume));
-            }
-        }
-
-        public string fontsize
-        {
-            get { return _fontsize; }
-            set
-            {
-                _fontsize = value;
-                OnPropertyChanged(nameof(fontsize));
-            }
-        }
-
         public string expression
         {
             get { return _expression; }
@@ -158,6 +126,19 @@ namespace Alarm.Models
             {
                 _expression = value;
                 OnPropertyChanged(nameof(expression));
+            }
+        }
+
+        public string Group { get; set; } = "Default";
+
+        public string display
+        {
+            get { return _display; }
+
+            set
+            {
+                _display = value;
+                OnPropertyChanged(nameof(display));
             }
         }
 
