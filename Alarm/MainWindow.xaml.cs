@@ -110,14 +110,10 @@ namespace Alarm
             this.Close();
         }
 
-        private void auroRun_Checked(object sender, RoutedEventArgs e)
+        private void auroRun_Click(object sender, RoutedEventArgs e)
         {
-            AutoRun = true;
-        }
-
-        private void auroRun_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AutoRun = false;
+            AutoRun = !AutoRun;
+            this.auroRun.IsChecked = AutoRun;
         }
         #endregion
 
