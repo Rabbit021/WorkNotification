@@ -5,22 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Alarm"
         xmlns:control="clr-namespace:Alarm.Control"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1080">
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d" 
+        Title="MainWindow" Height="700" Width="1080" ShowInTaskbar="False" WindowState="Normal" WindowStyle="SingleBorderWindow">
     <Grid Background="#FFCCE8CF">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="States">
-                <VisualState x:Name="ListTask"/>
-                <VisualState x:Name="EditTask"/>
+                <VisualState x:Name="ListTask" />
+                <VisualState x:Name="EditTask" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
+        <tb:TaskbarIcon Name="tbi" HorizontalAlignment="Left" VerticalAlignment="Top" IconSource="Image/App.ico"  
+                        TrayToolTip="{DynamicResource TrayToolTip}" >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu Background="#FFD6D6D6">
+                    <MenuItem Name="visible" Header="显示" Click="visible_Click" />
+                    <MenuItem Name="exit" Header="退出" Click="exit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
         <Grid x:Name="Header">
-            <TextBlock x:Name="tbHeader" TextWrapping="Wrap" Text="河北广播电视台播控中心" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource HeaderTextBlockStyle}" d:IsHidden="True" Visibility="Collapsed"/>
+            <TextBlock x:Name="tbHeader" TextWrapping="Wrap" Text="河北广播电视台播控中心" VerticalAlignment="Center"
+                       HorizontalAlignment="Center" Style="{DynamicResource HeaderTextBlockStyle}" d:IsHidden="True"
+                       Visibility="Collapsed" />
         </Grid>
-        <control:TaskView Grid.Row="1" Margin="10"/>
+        <control:TaskView Grid.Row="1" Margin="10" d:IsHidden="True" />
     </Grid>
 </Window>
