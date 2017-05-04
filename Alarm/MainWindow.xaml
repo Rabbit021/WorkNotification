@@ -24,6 +24,7 @@
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Background="#FFD6D6D6">
                     <MenuItem Name="visible" Header="显示" Click="visible_Click" />
+                    <MenuItem Name="auroRun" Header="自启动" Checked="auroRun_Checked" Unchecked="auroRun_Unchecked" IsCheckable="True" />
                     <MenuItem Name="exit" Header="退出" Click="exit_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>

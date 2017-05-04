@@ -17,6 +17,10 @@ using Alarm.CommonLib;
 using Alarm.Control;
 using Alarm.Windows;
 using Hardcodet.Wpf.TaskbarNotification;
+using System.IO;
+using Microsoft.Win32;
+using System.Security.Permissions;
+using System.Reflection;
 
 namespace Alarm
 {
@@ -24,13 +28,38 @@ namespace Alarm
     {
         private const string DisplayText = "显示";
         private const string HiddenText = "隐藏";
+        public Assembly curAssembly { get; } = Assembly.GetExecutingAssembly();
+        private bool _autonRun;
+        public bool AutoRun
+        {
+            get
+            {
+                _autonRun = GetAutoRunState();
+                return _autonRun;
+            }
+            set
+            {
+                if (_autonRun != value)
+                {
+                    _autonRun = value;
+                    SetAutoRun(_autonRun);
+                }
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
             Closing += MainWindow_Closing;
             StateChanged += MainWindow_StateChanged;
+            Initlize();
+        }
+
+        private void Initlize()
+        {
             SetVisible(Visibility.Hidden);
+            this.auroRun.IsChecked = this.AutoRun;
+            SetAutoRun(true);
         }
 
         private void MainWindow_StateChanged(object sender, EventArgs e)
@@ -51,12 +80,13 @@ namespace Alarm
                 }
                 ScheduledManager.Instance.Close();
             }
-            catch (Exception exp)
+            catch
             {
                 Environment.Exit(0);
             }
         }
 
+        #region 托盘相关
         // 窗口最小化
         private void visible_Click(object sender, RoutedEventArgs e)
         {
@@ -80,12 +110,56 @@ namespace Alarm
             this.Close();
         }
 
+        private void auroRun_Checked(object sender, RoutedEventArgs e)
+        {
+            AutoRun = true;
+        }
+
+        private void auroRun_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AutoRun = false;
+        }
+        #endregion
+
         private void SetVisible(Visibility newVisible)
         {
             Visibility = newVisible;
             visible.Header = Visibility == Visibility.Visible ? HiddenText : DisplayText;
             WindowState = WindowState.Normal;
             ShowInTaskbar = newVisible == Visibility.Visible;
+        }
+
+        [RegistryPermission(SecurityAction.Demand)]
+        private void SetAutoRun(bool autorun)
+        {
+            try
+            {
+                var registry = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (autorun)
+                    registry.SetValue(curAssembly.GetName().Name, curAssembly.Location);
+                else
+                    registry.DeleteValue(curAssembly.GetName().Name, false);
+            }
+            catch
+            {
+            }
+        }
+
+        [RegistryPermission(SecurityAction.Demand)]
+        bool GetAutoRunState()
+        {
+            try
+            {
+                var registry = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                var str = registry.GetValue(curAssembly.GetName().Name) + "";
+                if (string.IsNullOrEmpty(str))
+                    return false;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

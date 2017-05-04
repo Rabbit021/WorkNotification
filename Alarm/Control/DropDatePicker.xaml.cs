@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Alarm.Control
-    
+
 {
     /// <summary>
     /// iSagySingleDropDatePicker.xaml 的交互逻辑
@@ -46,7 +46,7 @@ namespace Alarm.Control
                     control.cobWeek.SelectedIndex = time.Day - 1;
 
                 }
-                catch (Exception exp)
+                catch
                 {
 
                 }
