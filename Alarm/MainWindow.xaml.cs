@@ -42,6 +42,7 @@ namespace Alarm
                 if (_autonRun != value)
                 {
                     _autonRun = value;
+                    this.auroRun.IsChecked = _autonRun;
                     SetAutoRun(_autonRun);
                 }
             }
@@ -58,8 +59,7 @@ namespace Alarm
         private void Initlize()
         {
             SetVisible(Visibility.Hidden);
-            this.auroRun.IsChecked = this.AutoRun;
-            SetAutoRun(true);
+            AutoRun = GetAutoRunState();
         }
 
         private void MainWindow_StateChanged(object sender, EventArgs e)
@@ -113,7 +113,6 @@ namespace Alarm
         private void auroRun_Click(object sender, RoutedEventArgs e)
         {
             AutoRun = !AutoRun;
-            this.auroRun.IsChecked = AutoRun;
         }
         #endregion
 
