@@ -113,6 +113,9 @@
     <Compile Include="Windows\CloseWindow.xaml.cs">
       <DependentUpon>CloseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ShowInfoWindow.xaml.cs">
+      <DependentUpon>ShowInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Control\AddOrUpdateWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +149,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\ShowInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Image\App.ico" />
+    <Resource Include="Image\Close_Hover.png" />
+    <Resource Include="Image\Close_Press.png" />
     <Content Include="Theme\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

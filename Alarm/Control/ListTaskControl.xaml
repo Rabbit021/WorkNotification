@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button x:Name="BtnAdd" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Style="{DynamicResource OrangeButtonStyle}" Content="添加"/>
+            <Button x:Name="BtnAdd" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Style="{DynamicResource OrangeButtonStyle}" Content="添加" Width="90" Height="32"/>
         </StackPanel>
         <ListView x:Name="listView" SelectionMode="Single" Grid.Row="1" Margin="0,10,0,0" ItemContainerStyleSelector="{DynamicResource ListViewItemStyleSelector}" BorderThickness="1" BorderBrush="{DynamicResource LineBrush}">
             <ListView.View>

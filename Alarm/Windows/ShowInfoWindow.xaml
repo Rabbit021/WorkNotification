@@ -1,0 +1,21 @@
+﻿<Window x:Class="Alarm.Windows.ShowInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alarm.Windows"
+        mc:Ignorable="d"
+        Title="ShowInfoWindow" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate x:Key="InfoDataTemplate">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap" Text="{Binding title}" Margin="0" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                <TextBlock Margin="0" TextWrapping="Wrap" d:LayoutOverrides="TopPosition, BottomPosition" Text="{Binding content}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <StackPanel>
+        <Button x:Name="btnClose" Content="X" d:LayoutOverrides="LeftPosition, RightPosition" Style="{DynamicResource OrangeButtonStyle}" BorderThickness="0" Width="24" Height="24" HorizontalAlignment="Right" MinWidth="32" MinHeight="32"  />
+        <ListBox x:Name="lsbInfo" ItemTemplate="{DynamicResource InfoDataTemplate}" d:LayoutOverrides="LeftPosition, RightPosition"/>
+    </StackPanel>
+</Window>

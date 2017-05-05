@@ -156,5 +156,15 @@ namespace Alarm
                 return false;
             }
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var task = new TaskModel()
+            {
+                title = "测试",
+                content = "Content"
+            };
+            ShowInfoWindow.ShowAlarm(task);
+        }
     }
 }

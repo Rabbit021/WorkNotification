@@ -35,5 +35,6 @@
                        Visibility="Collapsed" />
         </Grid>
         <control:TaskView Grid.Row="1" Margin="10" d:IsHidden="True" />
+        <Button x:Name="button" Content="测试" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_Click"/>
     </Grid>
 </Window>
