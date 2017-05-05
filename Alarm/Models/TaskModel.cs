@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Alarm.Annotations;
 using Alarm.CommonLib;
+using Alarm.Control;
 using LiteDB;
 
 namespace Alarm.Models
@@ -12,20 +12,14 @@ namespace Alarm.Models
     public class TaskModel : INotifyPropertyChanged, IJobEntity, ITriggerEntity
     {
         private string _id;
-        private string _state;
         private string _title;
         private string _content;
-        private string _type;
-        private string _time;
-        private string _date;
-        private string _weekdays;
-        private string _audio;
-        private string _expression;
-        private string _display;
+        private CronType _type;
 
         public TaskModel()
         {
             id = Guid.NewGuid().ToString();
+            type = new CronType();
         }
 
         [BsonId]
@@ -36,16 +30,6 @@ namespace Alarm.Models
             {
                 _id = value;
                 OnPropertyChanged(nameof(id));
-            }
-        }
-
-        public string state
-        {
-            get { return _state; }
-            set
-            {
-                _state = value;
-                OnPropertyChanged(nameof(state));
             }
         }
 
@@ -69,7 +53,7 @@ namespace Alarm.Models
             }
         }
 
-        public string type
+        public CronType type
         {
             get { return _type; }
             set
@@ -79,69 +63,7 @@ namespace Alarm.Models
             }
         }
 
-        public string time
-        {
-            get { return _time; }
-            set
-            {
-                _time = value;
-                OnPropertyChanged(nameof(time));
-            }
-        }
-
-        public string date
-        {
-            get { return _date; }
-            set
-            {
-                _date = value;
-                OnPropertyChanged(nameof(date));
-            }
-        }
-
-        public string weekdays
-        {
-            get { return _weekdays; }
-            set
-            {
-                _weekdays = value;
-                OnPropertyChanged(nameof(weekdays));
-            }
-        }
-
-        public string audio
-        {
-            get { return _audio; }
-            set
-            {
-                _audio = value;
-                OnPropertyChanged(nameof(audio));
-            }
-        }
-
-        public string expression
-        {
-            get { return _expression; }
-            set
-            {
-                _expression = value;
-
-                OnPropertyChanged(nameof(expression));
-            }
-        }
-
         public string Group { get; set; } = "Default";
-
-        public string display
-        {
-            get { return _display; }
-
-            set
-            {
-                _display = value;
-                OnPropertyChanged(nameof(display));
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -149,6 +71,17 @@ namespace Alarm.Models
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public string expression
+        {
+            get { return type.Expression; }
+            set { type.Expression = value; }
+        }
+        public string display
+        {
+            get { return type.Display; }
+            set { type.Display = value; }
         }
     }
 }

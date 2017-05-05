@@ -84,6 +84,30 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -95,6 +119,10 @@
     <Compile Include="Control\AddOrUpdateWin.xaml.cs">
       <DependentUpon>AddOrUpdateWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\CronMaker.xaml.cs">
+      <DependentUpon>CronMaker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CronType.cs" />
     <Compile Include="Control\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +132,7 @@
     <Compile Include="Control\ListTaskControl.xaml.cs">
       <DependentUpon>ListTaskControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\TimPickerConverter.cs" />
     <Compile Include="Models\ShowAlarmJob.cs" />
     <Compile Include="CommonLib\ScheduledManager.cs" />
     <Compile Include="Control\TaskView.xaml.cs">
@@ -117,6 +146,10 @@
       <DependentUpon>ShowInfoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Control\AddOrUpdateWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\CronMaker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,8 +187,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Image\App.ico" />
-    <Resource Include="Image\Close_Hover.png" />
-    <Resource Include="Image\Close_Press.png" />
     <Content Include="Theme\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

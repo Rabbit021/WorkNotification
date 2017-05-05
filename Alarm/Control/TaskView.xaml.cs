@@ -71,6 +71,7 @@ namespace Alarm.Control
         private void BtnCancle_Click(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "ListTask", false);
+            this.Edit.Current = null;
         }
 
         public void Refresh()
@@ -78,6 +79,7 @@ namespace Alarm.Control
             var tasks = Db.repository?.Query<TaskModel>().ToList();
             this.List.listView.ItemsSource = tasks;
             ScheduledManager.Instance.Refresh<ShowAlarmJob>(tasks);
+            this.Edit.Current = null;
         }
 
         public void AddOrUpdate(TaskModel task)

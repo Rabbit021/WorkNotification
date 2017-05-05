@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Alarm"
-             xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Control="clr-namespace:Alarm.Control" x:Class="Alarm.EditTaskControl"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Control="clr-namespace:Alarm.Control" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" x:Class="Alarm.EditTaskControl"
              mc:Ignorable="d" >
     <StackPanel x:Name="Edit" >
         <Grid Margin="0,10">
@@ -28,8 +28,8 @@
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Left" Text="时间：" FontSize="16" VerticalAlignment="Center" Style="{DynamicResource LabelItemsNormalStyle}" Margin="0,5.84" d:LayoutOverrides="HorizontalAlignment"/>
-            <Control:DropDatePicker d:LayoutOverrides="Width, Height" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Top" Style="{DynamicResource LabelItemsNormalStyle}" Margin="0" d:LayoutOverrides="HorizontalAlignment"><Run Text="时间："/></TextBlock>
+            <Control:CronMaker Grid.Column="1" CurrentCronType="{Binding type,Mode=TwoWay}"/>
         </Grid>
         <Grid Margin="0,10" HorizontalAlignment="Center">
             <Button x:Name="BtnSave" Content="保存"  Style="{DynamicResource BlueButtonStyle}" Margin="50,0,0,0" HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin" Width="90" Height="32"/>

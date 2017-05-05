@@ -108,19 +108,25 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="开始时间 ：" VerticalAlignment="Center"/>
         <StackPanel x:Name="StackPanelDate" Height="32" Orientation="Horizontal" Margin="0,0,5,0">
             <ComboBox x:Name="cobYear" Tag="年" Width="92" Height="32"
                       ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" />
+            <TextBlock TextWrapping="Wrap" Text="年" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <ComboBox x:Name="cobMonth" Tag="月" Width="71"
                       ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" />
+            <TextBlock TextWrapping="Wrap" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Center" Text="月"/>
             <ComboBox x:Name="cobDay" Tag="日" Width="70"
                       ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" />
+            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="日"/>
         </StackPanel>
-        <StackPanel x:Name="StackPanelHourMinute" Height="32" Orientation="Horizontal" Visibility="Collapsed">
+        <StackPanel x:Name="StackPanelHourMinute" Height="32" Orientation="Horizontal">
             <ComboBox x:Name="cobHour" Tag="时" Width="70" Height="32"
                       ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" />
+            <TextBlock TextWrapping="Wrap" Text="时" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <ComboBox x:Name="cobMinute" Tag="分" Width="70" Height="32"
                       ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" />
+            <TextBlock TextWrapping="Wrap" Text="分" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>
         <ComboBox x:Name="cobWeek" Tag="" Width="70" Height="32"
                   ItemContainerStyle="{DynamicResource DatePickerComboBoxItemStyle}" Visibility="Collapsed" />

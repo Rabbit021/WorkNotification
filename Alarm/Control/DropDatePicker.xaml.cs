@@ -5,11 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Alarm.Control
-
 {
-    /// <summary>
-    /// iSagySingleDropDatePicker.xaml 的交互逻辑
-    /// </summary>
+
     public partial class DropDatePicker : UserControl
     {
         private bool isInitData = false;
@@ -221,16 +218,6 @@ namespace Alarm.Control
             if (cobMonth.SelectedItem == null) return;
             var month = Convert.ToInt32(cobMonth.SelectedItem);
             RefreshDayFromMonth(month);
-            //var days = DateTime.DaysInMonth(PickerTime.Year, month);
-            //var selectedDay = PickerTime.Day;
-            //cobDay.Items.Clear();
-            //for (int i = 1; i <= days; i++)
-            //{
-            //    cobDay.Items.Add(i.ToString("00"));
-            //}
-            //if (selectedDay > days)
-            //    cobDay.SelectedIndex = days - 1;
-            //else cobDay.SelectedIndex = selectedDay - 1;
             RefreshTime(PickerTime.Year, month, cobDay.SelectedIndex + 1);
         }
 
@@ -276,6 +263,13 @@ namespace Alarm.Control
             this.PickerTime = Convert.ToDateTime($"{PickerTime.Year}-{PickerTime.Month}-{PickerTime.Day} {PickerTime.Hour}:{minute}:00");
         }
 
+        private void CobWeek_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cobWeek.SelectedItem == null) return;
+            var week = cobWeek.SelectedIndex + 1;
+            this.PickerTime = Convert.ToDateTime($"{PickerTime.Year}-{PickerTime.Month}-{week}");
+        }
+
         public enum SelectMode
         {
             //年月日
@@ -288,13 +282,6 @@ namespace Alarm.Control
             OnlyMonthDay,
             OnlyHourMinute,
             All
-        }
-
-        private void CobWeek_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cobWeek.SelectedItem == null) return;
-            var week = cobWeek.SelectedIndex + 1;
-            this.PickerTime = Convert.ToDateTime($"{PickerTime.Year}-{PickerTime.Month}-{week}");
         }
     }
 
